@@ -1,0 +1,177 @@
+<style>
+    .guide_container{
+        background: url("{{ section.settings.bg | img_url: "master" }}") center;
+        background-size: cover;
+        border-radius: 255px;
+        padding: 38px 30px;
+        margin: 70px auto;
+        
+    }
+    @media screen and (max-width: 1500px) {
+        .guide_container{
+            border-radius: 0;
+        }
+    }
+    @media screen and (max-width: 750px) {
+        .guide_container{
+            padding: 20px 30px;
+            margin:  50px auto;
+        }
+        .guide_logo{
+            max-width: 79px;
+        }
+        .guide_container_box2{
+            flex-wrap: wrap;
+        }
+        .guide .underline_text{
+            margin-bottom: 23px;
+        }
+    }
+    .underline_text{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        /* identical to box height, or 150% */
+
+        text-decoration-line: underline;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+
+        color: #FFFFFF;
+        text-decoration: underline;
+    }
+    .guide_container_box{
+        max-width: 1260px;
+        margin: 0 auto;
+    }
+    .guide_container_box2{
+        max-width: 1200px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .logos_block{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .guide .sub-title,
+    .guide .h2,
+    .guide .underline_text {
+        color: #fff;
+        text-align: left;
+    }
+    .guide .h2{
+        margin-bottom: 16px;
+        margin-top: 8px;
+    }
+    .guide_logo{
+        width: 115px;
+    
+    }
+    .guide_logo img,
+    .guide_logo svg{
+        width: 100%;
+        object-fit: contain;
+    }
+
+</style>
+<div class="guide">
+    <div class="guide_container page-width">
+        <div class="guide_container_box">
+            <div class="guide_container_box2">
+                <div class="text_block">
+            <div class=" sub-title">
+                {{section.settings.sub_title}}
+            </div>
+            <div class=" h2">
+                {{section.settings.title}}
+            </div>
+            <a {% if section.settings.link %}href="{{section.settings.link }}"{% endif %}  class="underline_text">
+                {{section.settings.text}}
+
+            </a>
+        </div>
+        <div class="logos_block">
+            {% if section.settings.image != blank %}
+                <div class="guide_logo">
+                {{ section.settings.image | image_url: width: 3840
+                    | image_tag:
+                    loading: 'lazy',
+                    height: image_height,
+                    class: image_class,
+                    sizes: sizes}}
+                </div>
+            {% endif %}
+            {% if  section.settings.image2 != blank %}
+                <div class="guide_logo">
+                {{ section.settings.image2 | image_url: width: 3840
+                    | image_tag:
+                    loading: 'lazy',
+                    height: image_height,
+                    class: image_class,
+                    sizes: sizes}}
+            </div>
+            {% endif %}
+            
+        </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% schema %}
+{
+  "name": "Download guide",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg",
+      "label": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "First logo"
+    },
+    {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "Second logo "
+    },
+    {
+    "type": "text",
+    "id": "sub_title",
+    "default": "about us",
+    "label": "Sub-title"
+    },
+    {
+    "type": "url",
+    "id": "link",
+    "label": "Link"
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "default": "Download Your Free Guide",
+    "label": "Title"
+    },
+    {
+    "type": "text",
+    "id": "text",
+    "default": "2023 Employment Law Updates",
+    "label": "Text"
+    }
+  ],
+  "blocks": [
+    
+  ],
+  "presets": [
+    {
+      "name": "Download guide"
+    }
+  ]
+}
+{% endschema %}

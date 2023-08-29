@@ -1,0 +1,592 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+
+<style>
+
+    {% for block in section.blocks %}
+    .class-block-id{{ forloop.index }}{{ section.id }} {
+        margin-top: {{ block.settings.m_t }}px;
+        margin-bottom: {{ block.settings.m_b }}px;
+    }
+
+    {% endfor %}
+    .padding{{ section.id }} {
+        padding-top: {{ section.settings.p_t }}px;
+        padding-bottom: {{ section.settings.p_b }}px;
+    }
+
+    @media screen and (max-width: {{ settings.page_width }}px) {
+        .mb_container {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+      {% if section.settings.hide_img_mb == true %}
+      .image_banner_image_block{
+        display: none;
+      }
+    {% endif %}
+    {% for block in section.blocks %}
+        .class-block-id{{ forloop.index }}{{ section.id }} {
+            margin-top: {{ block.settings.m_m_t }}px;
+            margin-bottom: {{ block.settings.m_m_b }}px;
+        }
+
+    {% endfor %}
+        .padding{{ section.id }} {
+            padding-top: {{ section.settings.m_p_t }}px;
+            padding-bottom: {{ section.settings.m_p_b }}px;
+        }
+        
+    }
+    {% if section.settings.smaller_container == true %}
+      .image_banner_container{{ section.id }}{
+        max-width: 1260px;
+        gap: 60px;
+      }
+      .image_banner_container{{ section.id }} .image_banner_text_block{
+        max-width: 620px;
+      }
+      @media screen and (max-width: 950px){
+        .image_banner_container{{ section.id }} .image_banner_text_block{
+        max-width: 100%;
+        }
+        .image_banner_container{{ section.id }}{
+        gap: 0px;
+        }
+      }
+    {% endif %}
+    
+</style>
+
+<div class="image_banner padding{{ section.id }}">
+    <div class="image_banner_container  {%if section.settings.container_mb_image == true %} mb_container {% endif %}{% if section.settings.smaller_container != true %}page-width{% endif %} image_banner_container{{ section.id }}">
+        <div class="image_banner_text_block {%if section.settings.container_mb_image != true %} mb_container {% endif %}">
+          {% if section.settings.circle %}
+            <div class="bg_img">
+                <svg width="294" height="333" viewBox="0 0 294 333" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="147" cy="186" r="146.5" stroke="#15C1EC" stroke-opacity="0.4" stroke-dasharray="9 9"/>
+                    <circle cx="181" cy="48" r="48" fill="#2B2B5E" fill-opacity="0.12"/>
+                </svg>
+            </div>
+          {% endif %}
+            
+            {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                    {%- when 'heading' -%}
+                    {% if section.settings.h_style == "h1" %}
+                        <h1 class="banner_text main_text class-block-id{{ forloop.index }}{{ section.id }}">
+                          {{ block.settings.heading }} <span
+                                  class="highlighted">{{ block.settings.highlighted }}</span>
+                        </h1>
+                     {% else %} 
+                        <h2 class="banner_text h2 class-block-id{{ forloop.index }}{{ section.id }}">
+                        {{ block.settings.heading }} <span
+                                class="highlighted">{{ block.settings.highlighted }}</span>
+                        </h2>
+                     {% endif %}
+                    {%- when 'text' -%}
+                        {% if block.settings.text_style == "v_1" %}
+                            <div class="banner_text is_styled class-block-id{{ forloop.index }}{{ section.id }}">
+                                <div class="banner_text_svg">
+                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="4.5" cy="5" r="4.5" fill="#1F60AE"/>
+                                    </svg>
+                                </div>
+                                <div style="color:{{block.settings.color}}" class="banner_text">
+                                    {{ block.settings.text }}
+                                </div>
+                            </div>
+                        {% elsif block.settings.text_style == "v_2" %}
+                            <div class="banner_text normal class-block-id{{ forloop.index }}{{ section.id }}">
+                                <div  style="color:{{block.settings.color}}" class="banner_text">
+                                    {{ block.settings.text }}
+                                </div>
+                            </div>
+                        {% elsif block.settings.text_style == "v_3" %}
+                            <div class="banner_text bold class-block-id{{ forloop.index }}{{ section.id }}">
+                                <div style="color:{{block.settings.color}}" class="banner_text">
+                                    {{ block.settings.text }}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    {%- when 'buttons' -%}
+                        <div class="banner_button_box class-block-id{{ forloop.index }}{{ section.id }}">
+                            <a
+                                    {% if block.settings.button_link != blank %}
+                                        href="{{ block.settings.button_link }}"
+                                    {% endif %}
+                                    class="banner_button">
+                                <div class="button_text">
+                                    {{ block.settings.button_text }}
+                                </div>
+                                <div class="button_arrow">
+                                    <svg width="21" height="8" viewBox="0 0 21 8" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20.3536 4.35355C20.5488 4.15829 20.5488 3.84171 20.3536 3.64645L17.1716 0.464466C16.9763 0.269204 16.6597 0.269204 16.4645 0.464466C16.2692 0.659728 16.2692 0.976311 16.4645 1.17157L19.2929 4L16.4645 6.82843C16.2692 7.02369 16.2692 7.34027 16.4645 7.53553C16.6597 7.7308 16.9763 7.7308 17.1716 7.53553L20.3536 4.35355ZM0 4.5L20 4.5V3.5L0 3.5L0 4.5Z"
+                                              fill="white"/>
+                                    </svg>
+                                </div>
+                            </a>
+                            {%- for sub_block in section.blocks -%}
+                                {%- case sub_block.type -%}
+                                    {%- when 'phone' -%}
+                                        <div class="image-banner_phone">
+                                            <div class="image-banner_phone_icon">
+                                                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M18.7388 14.4138C18.5716 15.6841 17.9477 16.8502 16.9837 17.6942C16.0196 18.5382 14.7813 19.0023 13.5 19.0001C6.05626 19.0001 8.4831e-06 12.9438 8.4831e-06 5.50005C-0.00228837 4.21876 0.461903 2.98045 1.30588 2.01639C2.14986 1.05234 3.31592 0.428467 4.58626 0.261304C4.9075 0.22208 5.2328 0.2878 5.51362 0.448653C5.79444 0.609506 6.0157 0.856865 6.14438 1.1538L8.12438 5.57412V5.58537C8.2229 5.81267 8.26359 6.06083 8.24282 6.30769C8.22204 6.55455 8.14044 6.79242 8.00532 7.00005C7.98845 7.02537 7.97063 7.0488 7.95188 7.07224L6.00001 9.38599C6.7022 10.8129 8.1947 12.2922 9.64032 12.9963L11.9222 11.0547C11.9446 11.0359 11.9681 11.0184 11.9925 11.0022C12.2 10.8639 12.4387 10.7794 12.687 10.7565C12.9353 10.7336 13.1854 10.7729 13.4147 10.871L13.4269 10.8766L17.8434 12.8557C18.1409 12.9839 18.3889 13.205 18.5503 13.4858C18.7116 13.7667 18.7778 14.0922 18.7388 14.4138Z"
+                                                          fill="#1F60AE"/>
+                                                </svg>
+                                            </div>
+                                            {% assign number = sub_block.settings.text | replace: '-', '' %}
+                                            <a href="tel:{{number}}" class="image-banner_phone_text">
+                                                {{ sub_block.settings.text }}
+                                            </a>
+                                            
+
+                                        </div>
+                                        
+                                {% endcase %}
+                            {% endfor %}
+                        </div>
+
+                    {%- when 'logo' -%}
+                        <div class="banner_logo class-block-id{{ forloop.index }}{{ section.id }}">
+                            {{ block.settings.image | image_url: width: 3840
+                            | image_tag:
+                            loading: 'lazy',
+                            height: image_height,
+                            class: image_class,
+                            sizes: sizes}}
+                        </div>
+                    {% when 'sub_title' %}
+                        <div class="image-banner sub-title">
+                            {{ block.settings.text }}
+                        </div>
+                {% endcase %}
+            {% endfor %}
+        </div>
+        <div class="image_banner_image_block">
+            {% if section.settings.image != blank %}
+                {{ section.settings.image | image_url: width: 3840
+                | image_tag:
+                loading: 'lazy',
+                width: section.settings.image.width,
+                height: image_height,
+                class: image_class,
+                sizes: sizes,
+                widths: widths }}
+            {% else %}
+                {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+
+        </div>
+    </div>
+
+
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.image-banner.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "smaller_container",
+      "default": false,
+      "label": "Smaller container"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_img_mb",
+      "default": false,
+      "label": "Hide image on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "circle",
+      "default": true,
+      "label": "Background circle"
+    },
+    {
+      "type": "checkbox",
+      "id": "container_mb_image",
+      "default": false,
+      "label": "Image in mobile container"
+    },
+    {
+      "type": "select",
+      "id": "h_style",
+      "options": [
+        {
+          "value": "h1",
+          "label": " h1"
+        },
+        {
+          "value": "h2",
+          "label": "h2"
+        }
+      ],
+      "default": "h2",
+      "label": "Style title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.image-banner.settings.image.label"
+    },
+    {
+      "type": "range",
+      "id": "p_t",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px",
+      "label": "Space top"
+    },
+    {
+      "type": "range",
+      "id": "p_b",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px",
+      "label": "Space bottom"
+    },
+    {
+      "type": "range",
+      "id": "m_p_t",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px",
+      "label": "Space top for mobile"
+    },
+    {
+      "type": "range",
+      "id": "m_p_b",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px",
+      "label": "Space bottom for mobile"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sub_title",
+      "name": "Sub-title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "Welcome",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "t:sections.image-banner.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Image banner",
+          "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "highlighted",
+          "default": "Professionals",
+          "label": "highlighted text"
+        },
+        {
+          "type": "range",
+          "id": "m_t",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space top"
+        },
+        {
+          "type": "range",
+          "id": "m_b",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 12,
+          "unit": "px",
+          "label": "Space bottom"
+        },
+        {
+          "type": "range",
+          "id": "m_m_t",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space top for mobile"
+        },
+        {
+          "type": "range",
+          "id": "m_m_b",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 12,
+          "unit": "px",
+          "label": "Space bottom for mobile"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.image-banner.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "Give customers details about the banner image(s) or content on the template.",
+          "label": "t:sections.image-banner.blocks.text.settings.text.label"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "v_1",
+              "label": "Variant 1"
+            },
+            {
+              "value": "v_2",
+              "label": "Variant 2"
+            },
+            {
+              "value": "v_3",
+              "label": "Variant 3"
+            }
+          ],
+          "default": "v_2",
+          "label": "Text variant"
+        },
+        {
+          "type": "range",
+          "id": "m_t",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space top"
+        },
+        {
+          "type": "range",
+          "id": "m_b",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 30,
+          "unit": "px",
+          "label": "Space bottom"
+        },
+        {
+          "type": "range",
+          "id": "m_m_t",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space top for mobile"
+        },
+        {
+          "type": "range",
+          "id": "m_m_b",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 24,
+          "unit": "px",
+          "label": "Space bottom for mobile"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.image-banner.blocks.buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "default": "Button label",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "v_1",
+              "label": "Variant 1"
+            },
+            {
+              "value": "v_2",
+              "label": "Variant 2"
+            }
+          ],
+          "default": "v_1",
+          "label": "Button color variant"
+        },
+        {
+          "type": "range",
+          "id": "m_t",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space top"
+        },
+        {
+          "type": "range",
+          "id": "m_b",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 30,
+          "unit": "px",
+          "label": "Space bottom"
+        },
+        {
+          "type": "range",
+          "id": "m_m_t",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space top for mobile"
+        },
+        {
+          "type": "range",
+          "id": "m_m_b",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 30,
+          "unit": "px",
+          "label": "Space bottom for mobile"
+        }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.image-banner.settings.image.label"
+        },
+        {
+          "type": "range",
+          "id": "m_t",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space top"
+        },
+        {
+          "type": "range",
+          "id": "m_b",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space bottom"
+        },
+        {
+          "type": "range",
+          "id": "m_m_t",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space top for mobile"
+        },
+        {
+          "type": "range",
+          "id": "m_m_b",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Space bottom for mobile"
+        }
+      ]
+    },
+    {
+      "type": "phone",
+      "name": "Phone",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "1-800-944-7668",
+          "label": "Phone number"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-banner.presets.name",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "buttons"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

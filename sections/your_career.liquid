@@ -1,0 +1,310 @@
+<style>
+    .your_career {
+        padding-top: {{ section.settings.p_t }}px;
+        padding-bottom: {{ section.settings.p_b }}px;
+    }
+    media screen and (max-width: 600px) {
+        .your_career {
+            padding-top: {{ section.settings.m_p_t }}px;
+            padding-bottom: {{ section.settings.m_p_b }}px;
+        }
+    }
+    .your_career .h1{
+        margin: 9px 0;
+    }
+    .your_career .h2{
+        margin-top: 3px;
+        margin-bottom: 16px;
+    }
+    .your_career .info_text{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 32px;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        color: #9F9F9F;
+        margin-bottom: 9px;
+        letter-spacing: 0;
+    }
+    .your_career .bold{
+        margin-bottom: 16px;
+    }
+    .your_career_container2 {
+        width: 1486px;
+        display: flex;
+        gap: 120px
+    }
+
+    .your_career_container {
+        max-width: 1578px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: end;
+    }
+
+    .your_career_text_block {
+        max-width: 590px;
+    }
+
+    .banner_button {
+        cursor: pointer;
+        background: #1F60AE;
+        border-radius: 32px;
+        padding: 20px 30px;
+        color: white;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .banner_button .button_text {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        color: #FFFFFF;
+        margin-right: 9px;
+    }
+    .info_block{
+        border-radius: 16px;
+        max-width: 563px;
+        box-sizing: border-box;
+        padding: 40px 30px;
+        background-color: #F8F9FE;
+        min-width: 400px;
+    }
+    .sub_title{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    }
+    .sub_title .text{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 24px;
+        text-transform: uppercase;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        color: #1F60AE;
+
+    }
+    .your_career_info_blocks{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    @media screen and (max-width: {{ settings.page_width }}px) {
+        .your_career_container2 {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+    @media screen and (max-width: 950px) {
+        .your_career_container2 {
+            gap: 30px;
+        }
+    }
+    @media screen and (max-width: 850px) {
+        .your_career_container2 {
+            flex-wrap: wrap;
+        }
+        .your_career_info_blocks{
+            margin: 0 auto;
+        }
+        .your_career_text_block{
+            max-width: 100%;
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .your_career .h1{
+            font-size: 24px;
+            line-height: 64px;
+        }
+    }
+</style>
+<div class="your_career">
+    <div class="your_career_container">
+        <div class="your_career_container2">
+            <div class="your_career_text_block">
+                <div class="sub-title">
+                    {{ section.settings.sub_title }}
+                </div>
+                <div class="h2">
+                    {{ section.settings.title }}
+                </div>
+                <div class="bold">
+                    {{ section.settings.b_text }}
+                </div>
+                <div class="normal">
+                    {{section.settings.text }}
+                </div>
+            </div>
+            <div class="your_career_info_blocks">
+                {% for block in section.blocks %}
+                    <div class="info_block">
+                    <div class="sub_title">
+                        <div class="text_svg">
+                            <svg width="9" height="10" viewBox="0 0 9 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4.5" cy="5" r="4.5" fill="#1F60AE"/>
+                            </svg>
+                        </div>
+                        <div class="text">
+                            {{ block.settings.sub_title }}
+                        </div>
+                    </div>
+                    <div class="h1">
+                        {{ block.settings.title }}
+                    </div>
+                    <div class="info_text">
+                        {{ block.settings.text }}
+                    </div>
+                    <div class="banner_button_box class-block-id{{ forloop.index }}{{ section.id }}">
+                        <a {% if block.settings.button_link !=blank %} href="{{ block.settings.button_link }}" {% endif
+                            %} class="banner_button">
+                            <div class="button_text">
+                                {{ block.settings.text_btn }}
+                            </div>
+                            <div class="button_arrow">
+                                <svg width="21" height="8" viewBox="0 0 21 8" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M20.3536 4.35355C20.5488 4.15829 20.5488 3.84171 20.3536 3.64645L17.1716 0.464466C16.9763 0.269204 16.6597 0.269204 16.4645 0.464466C16.2692 0.659728 16.2692 0.976311 16.4645 1.17157L19.2929 4L16.4645 6.82843C16.2692 7.02369 16.2692 7.34027 16.4645 7.53553C16.6597 7.7308 16.9763 7.7308 17.1716 7.53553L20.3536 4.35355ZM0 4.5L20 4.5V3.5L0 3.5L0 4.5Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% schema %}
+{"name": "Your career",
+"tag": "section",
+"class": "section",
+"settings": [
+{
+    
+        "type": "range",
+        "id": "p_t",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "unit": "px",
+        "label": "Space top"
+      },
+      {
+        "type": "range",
+        "id": "p_b",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "unit": "px",
+        "label": "Space bottom"
+      },
+      {
+        "type": "range",
+        "id": "m_p_t",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "unit": "px",
+        "label": "Space top for mobile"
+      },
+      {
+        "type": "range",
+        "id": "m_p_b",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "unit": "px",
+        "label": "Space bottom for mobile"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "sub_title",
+        "default": "HRWebAdvisor",
+        "label": "Sub-title"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "default": "Elevate Your Career",
+        "label": "Title"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "b_text",
+        "default": "Bold text",
+        "label": "Bold text"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "text",
+        "default": "Text",
+        "label": "Text"
+      }
+    
+],
+"blocks": [
+{
+    "type": "text",
+    "name": "t:sections.image-banner.blocks.text.name",
+    "settings": [
+        
+        {
+        "type": "inline_richtext",
+        "id": "sub_title",
+        "default": "We  are here to help you",
+        "label": "Sub-title"
+        },
+        {
+        "type": "inline_richtext",
+        "id": "title",
+        "default": "Find a Training",
+        "label": "Title"
+        },
+        {
+        "type": "inline_richtext",
+        "id": "text",
+        "default": "Start your training to upskill yourself and support your organization.",
+        "label": "Text"
+        },
+        {
+        "type": "inline_richtext",
+        "id": "text_btn",
+        "default": "View Catalog",
+        "label": "Text"
+        },
+        {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+        }
+        
+    ]
+}
+],
+"presets": [
+{
+"name": "Your career"
+}
+]
+}
+{% endschema %}

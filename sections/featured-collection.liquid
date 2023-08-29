@@ -1,0 +1,152 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+<style>
+  .products_list {
+    grid-template-columns: {% for i in (1..section.settings.show_items) %}1fr {% endfor %};
+  }
+  @media screen and (max-width: 1300px) {
+  {% if section.settings.show_items > 3 %}
+    .products_list {
+      grid-template-columns: {% for i in (1..3) %} 1fr {% endfor %};
+    }
+  {% endif %}
+  }
+  @media screen and (max-width: 990px) {
+  {% if section.settings.show_items > 2 %}
+    .products_list {
+      grid-template-columns: {% for i in (1..2) %} 1fr{% endfor %};
+    }
+
+  {% endif %}
+  }
+
+  @media screen and (max-width: 680px) {
+    .products_list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .collection_container{{ section.id }}{
+    padding-bottom: {{ section.settings.padding_bottom}}px;
+    padding-top: {{ section.settings.padding_top}}px;
+  }
+  @media screen and (max-width: 600px) {
+    .collection_container{{ section.id }}{
+      padding-bottom: {{ section.settings.padding_bottom_mb}}px;
+      padding-top: {{ section.settings.padding_top_mb}}px;
+    }
+  }
+  @media screen and (max-width: {{ settings.page_width }}px) {
+    .collection_container {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+</style>
+<div class="collection">
+    <div class="collection_container page-width collection_container{{ section.id }}">
+        <div class="collection_sub_title sub-title">
+            {{ section.settings.sub_title }}
+        </div>
+        <h2 class="collection_title">
+            {{ section.settings.title }}
+        </h2>
+        <ul class="products_list">
+            {% for product in section.settings.product_list %}
+                {% render 'card-product',
+                      card_product: product,
+                      section_id: section.id
+                %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.featured-collection.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Featured collection",
+      "label": "t:sections.featured-collection.settings.title.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "sub_title",
+      "default": "Featured collection",
+      "label": "Sub-title"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products"
+    },
+    {
+      "type": "range",
+      "id": "show_items",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Show items",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Space top for mobile",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Space bottom for mobile",
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-collection.presets.name"
+    }
+  ]
+}
+{% endschema %}

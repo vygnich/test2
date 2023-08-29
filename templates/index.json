@@ -1,0 +1,248 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "296792bf-8eaf-4753-8eb5-638ace53cdb7": {
+          "type": "text",
+          "settings": {
+            "text": "We  are industry education company",
+            "text_style": "v_1",
+            "m_t": 0,
+            "m_b": 0,
+            "m_m_t": 0,
+            "m_m_b": 0
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Empowering Human Resources",
+            "highlighted": "Professionals",
+            "m_t": 0,
+            "m_b": 12,
+            "m_m_t": 0,
+            "m_m_b": 12
+          }
+        },
+        "66b78511-3e82-4646-800c-5a47f4d0070f": {
+          "type": "text",
+          "settings": {
+            "text": "Transform your career with expertknowledge through online training",
+            "text_style": "v_2",
+            "m_t": 0,
+            "m_b": 40,
+            "m_m_t": 0,
+            "m_m_b": 24
+          }
+        },
+        "bbc84771-3b93-44e1-822c-7a122cb7821a": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "View Catalog",
+            "button_link": "shopify:\/\/collections",
+            "text_style": "v_1",
+            "m_t": 0,
+            "m_b": 30,
+            "m_m_t": 0,
+            "m_m_b": 30
+          }
+        },
+        "79ae3de8-facb-4885-b2bd-3e8095d5f25c": {
+          "type": "text",
+          "settings": {
+            "text": "We are approved HRCI and SHRM credit providers!",
+            "text_style": "v_3",
+            "m_t": 0,
+            "m_b": 19,
+            "m_m_t": 0,
+            "m_m_b": 10
+          }
+        },
+        "18035265-33fb-4100-bd77-1e135a3a2b7e": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/logo.png",
+            "m_t": 0,
+            "m_b": 0,
+            "m_m_t": 0,
+            "m_m_b": 0
+          }
+        },
+        "2f9766dc-ae3c-454b-9d25-0167b05d3a37": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/logo_1.png",
+            "m_t": 0,
+            "m_b": 0,
+            "m_m_t": 0,
+            "m_m_b": 0
+          }
+        }
+      },
+      "block_order": [
+        "296792bf-8eaf-4753-8eb5-638ace53cdb7",
+        "heading",
+        "66b78511-3e82-4646-800c-5a47f4d0070f",
+        "bbc84771-3b93-44e1-822c-7a122cb7821a",
+        "79ae3de8-facb-4885-b2bd-3e8095d5f25c",
+        "18035265-33fb-4100-bd77-1e135a3a2b7e",
+        "2f9766dc-ae3c-454b-9d25-0167b05d3a37"
+      ],
+      "settings": {
+        "smaller_container": false,
+        "image": "shopify:\/\/shop_images\/pic.png",
+        "p_t": 97,
+        "p_b": 0,
+        "m_p_t": 74,
+        "m_p_b": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured products",
+        "sub_title": "Featured collection",
+        "product_list": [
+          "beach-bag-xl-bright-blue-octopus",
+          "beach-bag-xl-turquoise-green-lizard",
+          "dark-12oz",
+          "decafmedium-12oz",
+          "medium-12oz"
+        ],
+        "show_items": 4,
+        "padding_top": 69,
+        "padding_bottom": 70,
+        "padding_top_mb": 48,
+        "padding_bottom_mb": 50
+      }
+    },
+    "16759534-dca8-4ced-8e04-9e2505d66328": {
+      "type": "image-banner",
+      "blocks": {
+        "e20ca24f-0dca-49c6-a160-efc5a4eea968": {
+          "type": "sub_title",
+          "settings": {
+            "text": "Welcome"
+          }
+        },
+        "template--19362909749562__16759534-dca8-4ced-8e04-9e2505d66328-168571100401f8652b-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "About Us",
+            "highlighted": "",
+            "m_t": 0,
+            "m_b": 12,
+            "m_m_t": 0,
+            "m_m_b": 12
+          }
+        },
+        "template--19362909749562__16759534-dca8-4ced-8e04-9e2505d66328-168571100401f8652b-1": {
+          "type": "text",
+          "settings": {
+            "text": "HRWebAdvisor is a leading industry education company that has helped over 25,000 professionals transform their careers. Whether you attend a live webinar or an on-demand session, you’ll have access to content-rich, practical guidance on everything from regulatory compliance to safety management to HR metrics for your organization",
+            "text_style": "v_2",
+            "m_t": 0,
+            "m_b": 30,
+            "m_m_t": 0,
+            "m_m_b": 24
+          }
+        },
+        "template--19362909749562__16759534-dca8-4ced-8e04-9e2505d66328-168571100401f8652b-2": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "Button label",
+            "button_link": "",
+            "text_style": "v_1",
+            "m_t": 0,
+            "m_b": 30,
+            "m_m_t": 0,
+            "m_m_b": 30
+          }
+        },
+        "6e5473ed-2f75-4c4b-b85f-eeeaaeeaf5ed": {
+          "type": "phone",
+          "settings": {
+            "text": "1-800-944-7668"
+          }
+        }
+      },
+      "block_order": [
+        "e20ca24f-0dca-49c6-a160-efc5a4eea968",
+        "template--19362909749562__16759534-dca8-4ced-8e04-9e2505d66328-168571100401f8652b-0",
+        "template--19362909749562__16759534-dca8-4ced-8e04-9e2505d66328-168571100401f8652b-1",
+        "template--19362909749562__16759534-dca8-4ced-8e04-9e2505d66328-168571100401f8652b-2",
+        "6e5473ed-2f75-4c4b-b85f-eeeaaeeaf5ed"
+      ],
+      "settings": {
+        "smaller_container": true,
+        "image": "shopify:\/\/shop_images\/Art.png",
+        "p_t": 37,
+        "p_b": 0,
+        "m_p_t": 0,
+        "m_p_b": 0
+      }
+    },
+    "1fdf871a-6c13-4ba5-b0b3-5a2ee81882da": {
+      "type": "learning_pathways",
+      "blocks": {
+        "dec9f384-1be9-4b52-9853-9c4dfcf28055": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Rectangle.svg",
+            "title": "Compliance",
+            "text": "Specialist"
+          }
+        },
+        "af8467a4-f4b2-4b0c-94ca-36de4092802c": {
+          "type": "column",
+          "settings": {
+            "title": "Compliance",
+            "text": "Specialist"
+          }
+        },
+        "82ab26f7-3817-48d6-8256-601deb69d59a": {
+          "type": "column",
+          "settings": {
+            "title": "Compliance",
+            "text": "Specialist"
+          }
+        },
+        "12423eef-beed-4617-9141-22588fa7f2b9": {
+          "type": "column",
+          "settings": {
+            "title": "Compliance",
+            "text": "Specialist"
+          }
+        },
+        "b5a8087e-deab-410d-8a11-418d48b2d722": {
+          "type": "column",
+          "settings": {
+            "title": "Compliance",
+            "text": "Specialist"
+          }
+        }
+      },
+      "block_order": [
+        "dec9f384-1be9-4b52-9853-9c4dfcf28055",
+        "af8467a4-f4b2-4b0c-94ca-36de4092802c",
+        "82ab26f7-3817-48d6-8256-601deb69d59a",
+        "12423eef-beed-4617-9141-22588fa7f2b9",
+        "b5a8087e-deab-410d-8a11-418d48b2d722"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Art_1.png",
+        "p_t": 0,
+        "p_b": 0,
+        "m_p_t": 0,
+        "m_p_b": 0
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection",
+    "16759534-dca8-4ced-8e04-9e2505d66328",
+    "1fdf871a-6c13-4ba5-b0b3-5a2ee81882da"
+  ]
+}

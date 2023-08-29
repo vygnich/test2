@@ -1,0 +1,9 @@
+development:
+ password: shptka_6644ccb93d5f38f01a2768b2e9d6eacf
+ theme_id: '151551967546'
+ store: bandera-development-online-store.myshopify.com
+ ignore_files:
+  - config/settings_data.json
+  - /\.(txt|gif|bat)$/
+  - '*.liquid___jb_tmp___'
+  - '*.liquid___jb_old___'

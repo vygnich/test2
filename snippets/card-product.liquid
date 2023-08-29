@@ -1,0 +1,72 @@
+{% comment %}
+  Renders a product card
+
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
+  - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+  - show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+  - show_vendor: {Boolean} Show the product vendor. Default: false
+  - show_rating: {Boolean} Show the product rating. Default: false
+  - extend_height: {Boolean} Card height extends to available container space. Default: true (optional)
+  - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
+  - show_quick_add: {Boolean} Show the quick add button.
+  - section_id: {String} The ID of the section that contains this card.
+  - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
+  - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
+
+  Usage:
+  {% render 'card-product', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{% comment %}{{ 'component-rating.css' | asset_url | stylesheet_tag }}{% endcomment %}
+
+
+
+{%- if card_product and card_product != empty %}
+  <div class="product_card">
+    <a class="product_link" href="{{ card_product.url }}"> </a>
+    <div class="product_card-image">
+      <img
+              srcset="
+                  {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                  {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+                "
+              src="{{ card_product.featured_media | image_url: width: 533 }}"
+              sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+              alt="{{ card_product.featured_media.alt | escape }}"
+              class="motion-reduce"
+              {% unless lazy_load == false %}
+                loading="lazy"
+              {% endunless %}
+              width="{{ card_product.featured_media.width }}"
+              height="{{ card_product.featured_media.height }}"
+      >
+    </div>
+    <div class="product_card-info_block">
+      <div class="product_card-title">
+        {{ card_product.title }}
+      </div>
+      <div class="product_card-bottom_block">
+        <div class="product_card-created_at">
+          {{ card_product.created_at | date: "%b %d, %Y" }}
+        </div>
+        <a href="{{ card_product.url }}" class="product_card-learn_more">
+          <div class="learn_more-text">
+            Learn more
+          </div>
+          <div class="learn_mare-arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 0.25C8.07164 0.25 6.18657 0.821828 4.58319 1.89317C2.97982 2.96451 1.73013 4.48726 0.992179 6.26884C0.254225 8.05042 0.061142 10.0108 0.437348 11.9021C0.813554 13.7934 1.74215 15.5307 3.10571 16.8943C4.46928 18.2579 6.20656 19.1865 8.09787 19.5627C9.98919 19.9389 11.9496 19.7458 13.7312 19.0078C15.5127 18.2699 17.0355 17.0202 18.1068 15.4168C19.1782 13.8134 19.75 11.9284 19.75 10C19.7473 7.41498 18.7192 4.93661 16.8913 3.10872C15.0634 1.28084 12.585 0.25273 10 0.25ZM14.2806 10.5306L11.2806 13.5306C11.1399 13.6714 10.949 13.7504 10.75 13.7504C10.551 13.7504 10.3601 13.6714 10.2194 13.5306C10.0786 13.3899 9.99959 13.199 9.99959 13C9.99959 12.801 10.0786 12.6101 10.2194 12.4694L11.9397 10.75H6.25C6.05109 10.75 5.86033 10.671 5.71967 10.5303C5.57902 10.3897 5.5 10.1989 5.5 10C5.5 9.80109 5.57902 9.61032 5.71967 9.46967C5.86033 9.32902 6.05109 9.25 6.25 9.25H11.9397L10.2194 7.53063C10.0786 7.38989 9.99959 7.19902 9.99959 7C9.99959 6.80098 10.0786 6.61011 10.2194 6.46937C10.3601 6.32864 10.551 6.24958 10.75 6.24958C10.949 6.24958 11.1399 6.32864 11.2806 6.46937L14.2806 9.46937C14.3504 9.53903 14.4057 9.62175 14.4434 9.7128C14.4812 9.80384 14.5006 9.90144 14.5006 10C14.5006 10.0986 14.4812 10.1962 14.4434 10.2872C14.4057 10.3783 14.3504 10.461 14.2806 10.5306Z" fill="#2B2B5E"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+{%- endif -%}
